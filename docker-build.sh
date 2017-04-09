@@ -22,11 +22,11 @@ remove_artifacts() {
 }
 
 build_rails() {
-    print_out "Building docker-rails4"
-
     local id
     local rails_name=$1
     local hub_name="habu/"$rails_name""
+
+    print_out "Building docker-"$rails_name""
 
     cd "$rails_name"
 
