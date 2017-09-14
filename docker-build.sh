@@ -17,7 +17,7 @@ print_out() {
 remove_artifacts() {
     printf "\n${CYAN}Removing artifacts${NORMAL}\n"
     docker stop $(docker ps -a -q) && docker rm -v $(docker ps -a -q)
-    docker rmi $(docker images -a -q)
+    docker rmi -f $(docker images -a -q)
     printf "\n${CYAN}Done.....${NORMAL}\n"
 }
 
