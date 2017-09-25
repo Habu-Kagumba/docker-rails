@@ -1,46 +1,25 @@
-FROM ubuntu:trusty
-
+FROM ruby:2.4.1-alpine
 MAINTAINER Herbert Kagumba <habukagumba@gmail.com>
 
-ENV RUBY_MAJOR="2.2" \
-    RUBY_VERSION="2.2.2" \
-    DB_PACKAGES="libsqlite3-dev" \
-    RUBY_PACKAGES="ruby2.2 ruby2.2-dev"
+ENV RAILS_VERSION="3.2.22"
 
+RUN \
+    apk --update --upgrade add \
+    curl-dev build-base openssh \
+    zlib-dev libxml2-dev libxslt-dev \
+    tzdata yaml-dev sqlite-dev postgresql-dev mysql-dev imagemagick-dev \
+    git nodejs
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      build-essential \
-      curl \
-      libffi-dev \
-      libgdbm-dev \
-      libncurses-dev \
-      libreadline6-dev \
-      libssl-dev \
-      libyaml-dev \
-      zlib1g-dev \
-  && rm -rf /var/lib/apt/lists/*
-
-RUN echo 'gem: --no-document' >> /.gemrc
-
-RUN mkdir -p /tmp/ruby \
-  && curl -L "http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.bz2" \
-      | tar -xjC /tmp/ruby --strip-components=1 \
-  && cd /tmp/ruby \
-  && ./configure --disable-install-doc \
-  && make \
-  && make install \
-  && gem update --system \
-  && rm -r /tmp/ruby
-
-RUN gem install --no-document bundler
-
-
-# see update.sh for why all "apt-get install"s have to stay as one long line
-RUN apt-get update && curl --silent --location https://deb.nodesource.com/setup_0.12 | bash - && apt-get install -y nodejs --no-install-recommends && rm -rf /var/lib/apt/lists/*
-
-# see http://guides.rubyonrails.org/command_line.html#rails-dbconsole
-RUN apt-get update && apt-get install -y mysql-client postgresql-client libsqlite3-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
-
-ENV RAILS_VERSION 4.2.3
-
-RUN gem install rails --version "$RAILS_VERSION"
+RUN \
+    gem install -N nokogiri \
+ && gem install -N rails --version "$RAILS_VERSION" \
+ && echo 'gem: --no-document' >> ~/.gemrc \
+ && cp ~/.gemrc /etc/gemrc \
+ && chmod uog+r /etc/gemrc \
+ # cleanup and settings
+ && bundle config --global build.nokogiri  "--use-system-libraries" \
+ && bundle config --global build.nokogumbo "--use-system-libraries" \
+ && find / -type f -iname \*.apk-new -delete \
+ && rm -rf /var/cache/apk/* \
+ && rm -rf /usr/lib/lib/ruby/gems/*/cache/* \
+ && rm -rf ~/.gem

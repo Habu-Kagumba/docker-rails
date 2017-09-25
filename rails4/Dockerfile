@@ -1,7 +1,7 @@
 FROM ruby:2.4.1-alpine
 MAINTAINER Herbert Kagumba <habukagumba@gmail.com>
 
-ENV RAILS_VERSION="4.2.8"
+ENV RAILS_VERSION="4.2.9"
 
 RUN \
     apk --update --upgrade add \
