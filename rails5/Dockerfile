@@ -1,4 +1,4 @@
-FROM ruby:2.4.1-alpine
+FROM ruby:2.4-alpine3.6
 MAINTAINER Herbert Kagumba <habukagumba@gmail.com>
 
 ENV RAILS_VERSION="5.1.4"
@@ -7,7 +7,7 @@ RUN \
     apk --update --upgrade add \
     curl-dev build-base openssh \
     zlib-dev libxml2-dev libxslt-dev \
-    tzdata yaml-dev sqlite-dev postgresql-dev mysql-dev imagemagick-dev \
+    tzdata yaml-dev postgresql-dev imagemagick-dev \
     git nodejs
 
 RUN \
