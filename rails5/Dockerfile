@@ -8,7 +8,7 @@ RUN \
     curl-dev build-base openssh \
     zlib-dev libxml2-dev libxslt-dev \
     tzdata yaml-dev postgresql-dev imagemagick-dev \
-    git nodejs
+    git nodejs nodejs-npm yarn
 
 RUN \
     gem install -N nokogiri \

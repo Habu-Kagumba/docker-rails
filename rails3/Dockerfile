@@ -7,8 +7,8 @@ RUN \
     apk --update --upgrade add \
     curl-dev build-base openssh \
     zlib-dev libxml2-dev libxslt-dev \
-    tzdata yaml-dev sqlite-dev postgresql-dev mysql-dev imagemagick-dev \
-    git nodejs
+    tzdata yaml-dev postgresql-dev imagemagick-dev \
+    git nodejs nodejs-npm yarn
 
 RUN \
     gem install -N nokogiri \
