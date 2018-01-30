@@ -10,6 +10,9 @@ RUN \
     tzdata yaml-dev postgresql-dev imagemagick-dev \
     git nodejs nodejs-npm
 
+RUN rm -rf /var/cache/apk/*
+
+
 RUN \
     gem install -N nokogiri \
  && gem install -N rails --version "$RAILS_VERSION" \
