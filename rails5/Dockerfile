@@ -1,7 +1,7 @@
-FROM ruby:2.4-alpine3.6
+FROM ruby:2.5.3-alpine3.8
 MAINTAINER Herbert Kagumba <habukagumba@gmail.com>
 
-ENV RAILS_VERSION="5.1.4"
+ENV RAILS_VERSION="5.2.2"
 
 RUN \
     apk --update --upgrade add \
