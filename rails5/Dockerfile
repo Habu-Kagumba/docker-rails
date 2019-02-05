@@ -8,13 +8,13 @@ RUN \
     curl-dev build-base openssh \
     zlib-dev libxml2-dev libxslt-dev \
     tzdata yaml-dev postgresql-dev imagemagick-dev \
-    git nodejs nodejs-npm
+    git nodejs nodejs-npm less
 
 RUN rm -rf /var/cache/apk/*
 
 RUN \
-    gem install bundler -v 2.0.1
-    gem install -N nokogiri \
+    gem install bundler -v 2.0.1 \
+ && gem install -N nokogiri \
  && gem install -N rails --version "$RAILS_VERSION" \
  && echo 'gem: --no-document' >> ~/.gemrc \
  && cp ~/.gemrc /etc/gemrc \
