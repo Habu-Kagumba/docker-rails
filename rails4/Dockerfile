@@ -1,4 +1,4 @@
-FROM ruby:2.4.1-alpine
+FROM ruby:2.4-alpine3.8
 MAINTAINER Herbert Kagumba <habukagumba@gmail.com>
 
 ENV RAILS_VERSION="4.2.9"
