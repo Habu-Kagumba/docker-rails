@@ -45,7 +45,6 @@ build_rails() {
 dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 pushd $dir
 
-build_rails "rails3"
 build_rails "rails4"
 build_rails "rails5"
 
