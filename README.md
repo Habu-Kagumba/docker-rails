@@ -11,7 +11,7 @@ For Rails 4:
 ```
 FROM habu/rails4
 
-...
+[...]
 ```
 
 For Rails 5:
@@ -19,5 +19,5 @@ For Rails 5:
 ```
 FROM habu/rails5
 
-...
+[...]
 ```
