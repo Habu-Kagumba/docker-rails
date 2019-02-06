@@ -1,4 +1,4 @@
-FROM ruby:2.5.3-alpine3.8
+FROM ruby:2.6.1-alpine3.8
 MAINTAINER Herbert Kagumba <habukagumba@gmail.com>
 
 ENV RAILS_VERSION="5.2.2"
@@ -13,8 +13,7 @@ RUN \
 RUN rm -rf /var/cache/apk/*
 
 RUN \
-    gem install bundler -v 2.0.1 \
- && gem install -N nokogiri \
+    gem install -N nokogiri \
  && gem install -N rails --version "$RAILS_VERSION" \
  && echo 'gem: --no-document' >> ~/.gemrc \
  && cp ~/.gemrc /etc/gemrc \

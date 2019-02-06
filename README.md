@@ -1,4 +1,4 @@
-# Rails (4, 5) Dockerfiles
+# Rails (4, 5) Development Dockerfiles
 
 These are simple alpine based Dockerfiles for simple rails applications. Currently for Rails 4, 5.
 
