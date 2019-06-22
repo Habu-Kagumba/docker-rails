@@ -31,7 +31,7 @@ build_rails() {
     cd "$rails_name"
 
     # Build the docker image
-    docker build -t "$rails_name" .
+    docker build -t habu/"$rails_name" .
     # Get the id
     id="$(docker images -aqf reference="$rails_name")"
     # Tag the image

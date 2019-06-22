@@ -1,28 +1,11 @@
-FROM ruby:2.4-alpine3.8
+FROM ruby:2.6.3-alpine
 MAINTAINER Herbert Kagumba <habukagumba@gmail.com>
 
-ENV RAILS_VERSION="4.2.9"
+ENV RAILS_VERSION="4.2.11.1"
 
 RUN \
-    apk --update --upgrade add \
-    curl-dev build-base openssh \
-    zlib-dev libxml2-dev libxslt-dev \
-    tzdata yaml-dev postgresql-dev imagemagick-dev \
-    git nodejs nodejs-npm less
+    apk --update --upgrade --no-cache add \
+    build-base tzdata postgresql-dev imagemagick \
+    git nodejs nodejs-npm
 
-RUN rm -rf /var/cache/apk/*
-
-
-RUN \
-    gem install -N nokogiri \
- && gem install -N rails --version "$RAILS_VERSION" \
- && echo 'gem: --no-document' >> ~/.gemrc \
- && cp ~/.gemrc /etc/gemrc \
- && chmod uog+r /etc/gemrc \
- # cleanup and settings
- && bundle config --global build.nokogiri  "--use-system-libraries" \
- && bundle config --global build.nokogumbo "--use-system-libraries" \
- && find / -type f -iname \*.apk-new -delete \
- && rm -rf /var/cache/apk/* \
- && rm -rf /usr/lib/lib/ruby/gems/*/cache/* \
- && rm -rf ~/.gem
+RUN gem install -N rails --version "$RAILS_VERSION"
