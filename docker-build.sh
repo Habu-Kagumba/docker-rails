@@ -47,5 +47,6 @@ pushd $dir
 
 build_rails "rails4"
 build_rails "rails5"
+build_rails "rails6"
 
 popd
